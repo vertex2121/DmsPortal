@@ -9,16 +9,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var chart_data_service_1 = require("../../chart/chart-data.service");
 var RejectsComponent = (function () {
-    function RejectsComponent() {
+    function RejectsComponent(chartDataService) {
+        this.chartDataService = chartDataService;
+    }
+    RejectsComponent.prototype.createChart = function () {
+        var _this = this;
+        this.chartDataService.getChartDataRejects()
+            .then(function (data) { return _this.buildChart(data.rejects); });
+    };
+    RejectsComponent.prototype.buildChart = function (dataStream) {
         this.options = {
-            title: { text: 'Причины отказов' },
+            title: { text: 'Уровень одобрения' },
+            xAxis: {
+                type: 'datetime'
+            },
             series: [{
-                    data: [29.9, 71.5, 106.4, 129.2],
+                    data: dataStream,
                 }]
         };
-    }
-    RejectsComponent.prototype.ngOnInit = function () { };
+    };
+    RejectsComponent.prototype.ngOnInit = function () {
+        this.createChart();
+    };
     return RejectsComponent;
 }());
 RejectsComponent = __decorate([
@@ -27,7 +41,7 @@ RejectsComponent = __decorate([
         templateUrl: './rejects.component.html',
         styles: ["chart {\n    display: block;\n}"]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [chart_data_service_1.ChartDataService])
 ], RejectsComponent);
 exports.RejectsComponent = RejectsComponent;
 //# sourceMappingURL=rejects.component.js.map

@@ -9,16 +9,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var chart_data_service_1 = require("../../chart/chart-data.service");
 var ErrorsComponent = (function () {
-    function ErrorsComponent() {
+    function ErrorsComponent(chartDataService) {
+        this.chartDataService = chartDataService;
+    }
+    ErrorsComponent.prototype.createChart = function () {
+        var _this = this;
+        this.chartDataService.getChartDataErrors()
+            .then(function (data) { return _this.buildChart(data.errors); });
+    };
+    ErrorsComponent.prototype.buildChart = function (dataStream) {
         this.options = {
-            title: { text: 'Количество ошибок' },
+            title: { text: 'Уровень одобрения' },
+            xAxis: {
+                type: 'datetime'
+            },
             series: [{
-                    data: [29.9, 71.5, 106.4, 129.2],
+                    data: dataStream,
                 }]
         };
-    }
-    ErrorsComponent.prototype.ngOnInit = function () { };
+    };
+    ErrorsComponent.prototype.ngOnInit = function () {
+        this.createChart();
+    };
     return ErrorsComponent;
 }());
 ErrorsComponent = __decorate([
@@ -27,7 +41,7 @@ ErrorsComponent = __decorate([
         templateUrl: './errors.component.html',
         styles: ["chart {\n    display: block;\n}"]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [chart_data_service_1.ChartDataService])
 ], ErrorsComponent);
 exports.ErrorsComponent = ErrorsComponent;
 //# sourceMappingURL=errors.component.js.map

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ChartDataService} from '../../chart/chart-data.service';
 
 @Component({
   selector: 'flow',
@@ -8,13 +9,28 @@ import { Component, OnInit } from '@angular/core';
 }`]
 })
 export class FlowComponent {
-  constructor() {
-        this.options = {
-            title : { text : 'Поток заявок' },
-            series: [{
-                data: [29.9, 71.5, 106.4, 129.2],
-            }]
-        };
-    }
-    options: Object;
+  constructor(private chartDataService: ChartDataService) { }
+
+  options: Object;
+
+  createChart(): void {
+    this.chartDataService.getChartDataTotal()
+      .then(data => this.buildChart(data.total));
+  }
+
+  private buildChart(dataStream: any): void {
+    this.options = {
+      title: { text: 'Уровень одобрения' },
+      xAxis: {
+        type: 'datetime'
+      },
+      series: [{
+        data: dataStream,
+      }]
+    };
+  }
+
+  ngOnInit(): void {
+    this.createChart();
+  }
 }

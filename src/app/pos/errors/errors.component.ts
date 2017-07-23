@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ChartDataService} from '../../chart/chart-data.service';
 
 @Component({
   selector: 'errors',
@@ -8,14 +9,28 @@ import { Component, OnInit } from '@angular/core';
 }`]
 })
 export class ErrorsComponent implements OnInit {
-  constructor() {
-        this.options = {
-            title : { text : 'Количество ошибок' },
-            series: [{
-                data: [29.9, 71.5, 106.4, 129.2],
-            }]
-        };
-    }
-    options: Object;
-  ngOnInit() {}
+  constructor(private chartDataService: ChartDataService) { }
+
+  options: Object;
+
+  createChart(): void {
+    this.chartDataService.getChartDataErrors()
+      .then(data => this.buildChart(data.errors));
+  }
+
+  private buildChart(dataStream: any): void {
+    this.options = {
+      title: { text: 'Уровень одобрения' },
+      xAxis: {
+        type: 'datetime'
+      },
+      series: [{
+        data: dataStream,
+      }]
+    };
+  }
+
+  ngOnInit(): void {
+    this.createChart();
+  }
 }

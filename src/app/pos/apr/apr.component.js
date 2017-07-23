@@ -9,25 +9,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var chart_data_service_1 = require("../../chart/chart-data.service");
 var AprComponent = (function () {
-    function AprComponent() {
+    function AprComponent(chartDataService) {
+        this.chartDataService = chartDataService;
+    }
+    AprComponent.prototype.createChart = function () {
+        var _this = this;
+        this.chartDataService.getChartDataApr()
+            .then(function (data) { return _this.buildChart(data.apr); });
+    };
+    AprComponent.prototype.buildChart = function (dataStream) {
         this.options = {
             title: { text: 'Уровень одобрения' },
+            xAxis: {
+                type: 'datetime'
+            },
             series: [{
-                    data: [29.9, 71.5, 106.4, 129.2],
+                    data: dataStream,
                 }]
         };
-    }
-    AprComponent.prototype.ngOnInit = function () { };
+    };
+    AprComponent.prototype.ngOnInit = function () {
+        this.createChart();
+    };
     return AprComponent;
 }());
 AprComponent = __decorate([
     core_1.Component({
         selector: 'apr',
         templateUrl: './apr.component.html',
-        styles: ["chart {\n    display: block;\n}"]
+        styles: ["chart {\n    display: block;\n    }"
+        ]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [chart_data_service_1.ChartDataService])
 ], AprComponent);
 exports.AprComponent = AprComponent;
 //# sourceMappingURL=apr.component.js.map

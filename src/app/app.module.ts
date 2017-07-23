@@ -1,5 +1,7 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import { ChartModule } from 'angular2-highcharts';
@@ -16,6 +18,8 @@ import {RejectsComponent} from './pos/rejects/rejects.component';
 import {ErrorsComponent} from './pos/errors/errors.component';
 import {AprComponent} from './pos/apr/apr.component';
 import {TimingsComponent} from './pos/timings/timings.component';
+import {ChartDataService} from './chart/chart-data.service';
+import {InMemoryDataService} from './chart/in-memory-data.service';
 
 //import { HomeComponent } from './home/home.component';
 
@@ -25,9 +29,11 @@ export function highchartsFactory() {
 
 @NgModule({
   imports: [
+    HttpModule,
     BrowserModule,
     ChartModule,
-    AppRoutingModule
+    AppRoutingModule,
+    InMemoryWebApiModule.forRoot(InMemoryDataService),
   ],
   declarations: [
     PosComponent,
@@ -43,10 +49,13 @@ export function highchartsFactory() {
     AprComponent,
     TimingsComponent
   ],
-  providers: [{
-    provide: HighchartsStatic,
-    useFactory: highchartsFactory
-  }],
+  providers: [
+    ChartDataService,
+    {
+      provide: HighchartsStatic,
+      useFactory: highchartsFactory
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
