@@ -1,11 +1,15 @@
 import { NgModule }      from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {PosComponent} from './dashboard/pos/pos.component';
+import {AppComponent} from './app.component';
+import {PosComponent} from './pos/pos.component';
 //import {PageNotFoundComponent} from './404/notFound.component';
-import {FlowComponent} from './dashboard/pos/flow/flow.component';
-import {OverviewComponent} from './dashboard/pos/overview/overview.component';
+import {FlowComponent} from './pos/flow/flow.component';
+import {OverviewComponent} from './pos/overview/overview.component';
 import {HomeComponent} from './home/home.component';
+import {RejectsComponent} from './pos/rejects/rejects.component';
+import {ErrorsComponent} from './pos/errors/errors.component';
+import {AprComponent} from './pos/apr/apr.component';
+import {TimingsComponent} from './pos/timings/timings.component';
 
 const appRoutes: Routes = [
   {
@@ -14,31 +18,51 @@ const appRoutes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
-  },
-  {
-    path: 'dashboard/pos',
-    component: OverviewComponent
-  },
-  {
-    path: 'dashboard/cash',
-    component: OverviewComponent
-  },
-  {
-    path: 'dashboard/card',
-    component: OverviewComponent
-  },
-  {
-    path: 'dashboard/xsell',
-    component: OverviewComponent
-  },
-  {
-    path: 'dashboard/pos/overview',
-    component: OverviewComponent
-  },
-  {
-    path: 'dashboard/pos/flow',
-    component: FlowComponent
+    component: AppComponent,
+    children: [
+      {
+        path: 'pos',
+        component: PosComponent,
+        children: [
+          {
+            path: 'overview',
+            component: OverviewComponent,
+          },
+          {
+            path: 'flow',
+            component: FlowComponent,
+          },
+          {
+            path: 'rejects',
+            component: RejectsComponent,
+          },
+          {
+            path: 'errors',
+            component: ErrorsComponent,
+          },
+          {
+            path: 'timing',
+            component: TimingsComponent,
+          },
+          {
+            path: 'apr',
+            component: AprComponent,
+          },
+        ]
+      },
+      {
+        path: 'cash',
+        component: PosComponent
+      },
+      {
+        path: 'card',
+        component: PosComponent
+      },
+      {
+        path: 'xsell',
+        component: PosComponent
+      },
+    ],
   },
   {
     path: '',

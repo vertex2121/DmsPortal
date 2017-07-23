@@ -5,14 +5,17 @@ import {AppRoutingModule} from './app-routing.module';
 import { ChartModule } from 'angular2-highcharts';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 import * as highcharts from 'highcharts';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import {PosComponent} from './dashboard/pos/pos.component';
+import {PosComponent} from './pos/pos.component';
 import {PageNotFoundComponent} from './404/notFound.component';
-import {FlowComponent} from './dashboard/pos/flow/flow.component';
-import {OverviewComponent} from './dashboard/pos/overview/overview.component';
+import {FlowComponent} from './pos/flow/flow.component';
+import {OverviewComponent} from './pos/overview/overview.component';
 import {NavbarComponent} from './navbar/navbar.component';
-import {MenuComponent} from './dashboard/pos/menu/menu.component';
+import {MenuComponent} from './pos/menu/menu.component';
 import {HomeComponent} from './home/home.component';
+import {RejectsComponent} from './pos/rejects/rejects.component';
+import {ErrorsComponent} from './pos/errors/errors.component';
+import {AprComponent} from './pos/apr/apr.component';
+import {TimingsComponent} from './pos/timings/timings.component';
 
 //import { HomeComponent } from './home/home.component';
 
@@ -27,7 +30,6 @@ export function highchartsFactory() {
     AppRoutingModule
   ],
   declarations: [
-    DashboardComponent,
     PosComponent,
     PageNotFoundComponent,
     FlowComponent,
@@ -35,7 +37,11 @@ export function highchartsFactory() {
     NavbarComponent,
     MenuComponent,
     HomeComponent,
-    AppComponent
+    AppComponent,
+    RejectsComponent,
+    ErrorsComponent,
+    AprComponent,
+    TimingsComponent
   ],
   providers: [{
     provide: HighchartsStatic,

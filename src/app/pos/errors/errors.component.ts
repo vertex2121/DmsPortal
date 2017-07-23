@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'flow',
-  templateUrl: './flow.component.html',
+  selector: 'errors',
+  templateUrl: './errors.component.html',
   styles: [`chart {
     display: block;
 }`]
 })
-export class FlowComponent {
+export class ErrorsComponent implements OnInit {
   constructor() {
         this.options = {
-            title : { text : 'simple chart' },
+            title : { text : 'Количество ошибок' },
             series: [{
                 data: [29.9, 71.5, 106.4, 129.2],
             }]
         };
     }
     options: Object;
+  ngOnInit() {}
 }
