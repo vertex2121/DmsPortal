@@ -21,7 +21,7 @@ var RejectsComponent = (function () {
     };
     RejectsComponent.prototype.buildChart = function (dataStream) {
         this.options = {
-            title: { text: 'Уровень одобрения' },
+            title: { text: 'Причины отказов' },
             xAxis: {
                 type: 'datetime'
             },

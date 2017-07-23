@@ -20,7 +20,7 @@ export class RejectsComponent implements OnInit {
 
   private buildChart(dataStream: any): void {
     this.options = {
-      title: { text: 'Уровень одобрения' },
+      title: { text: 'Причины отказов' },
       xAxis: {
         type: 'datetime'
       },

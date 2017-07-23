@@ -1,1 +1,7 @@
-<chart [options]="options"></chart>
+<chart [options]="options" (load)="saveInstance($event.context)">
+</chart>
+<div>
+    <label>Интервал обновления(мин): </label>
+    <input [(ngModel)]="interval" placeholder="5000"/>
+    <button id="button" (click)="refreshTimer()" class="autocompare">Применить</button>
+</div>

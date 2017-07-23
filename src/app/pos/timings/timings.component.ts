@@ -20,7 +20,7 @@ export class TimingsComponent implements OnInit {
 
   private buildChart(dataStream: any): void {
     this.options = {
-      title: { text: 'Уровень одобрения' },
+      title: { text: 'Время обработки заявок' },
       xAxis: {
         type: 'datetime'
       },

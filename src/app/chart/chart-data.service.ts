@@ -33,6 +33,15 @@ export class ChartDataService {
     return this.getChartData(this.chartDataAprUrl);
   }
 
+  getChartDataAprLastMinute(): [number, number] {
+    return this.generateRandomSeria();
+    //new Promise(this.generateRandomSeria)
+  }
+
+  private generateRandomSeria(): [number, number] {
+    return [(new Date()).getTime(), Math.round(Math.random() * 100)];
+  }
+
   private getChartData(url: string): Promise<any> {
     return this.http.get(url)
       .toPromise()

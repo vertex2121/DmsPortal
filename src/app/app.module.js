@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var http_1 = require("@angular/http");
+var forms_1 = require("@angular/forms");
 var angular_in_memory_web_api_1 = require("angular-in-memory-web-api");
 var app_component_1 = require("./app.component");
 var app_routing_module_1 = require("./app-routing.module");
@@ -40,11 +41,12 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [
+            forms_1.FormsModule,
             http_1.HttpModule,
             platform_browser_1.BrowserModule,
             angular2_highcharts_1.ChartModule,
             app_routing_module_1.AppRoutingModule,
-            angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(in_memory_data_service_1.InMemoryDataService),
+            angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(in_memory_data_service_1.InMemoryDataService, { delay: 2000 }),
         ],
         declarations: [
             pos_component_1.PosComponent,

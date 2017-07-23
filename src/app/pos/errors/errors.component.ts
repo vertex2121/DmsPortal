@@ -20,7 +20,7 @@ export class ErrorsComponent implements OnInit {
 
   private buildChart(dataStream: any): void {
     this.options = {
-      title: { text: 'Уровень одобрения' },
+      title: { text: 'Колличество ошибок' },
       xAxis: {
         type: 'datetime'
       },

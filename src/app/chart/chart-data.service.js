@@ -35,6 +35,13 @@ var ChartDataService = (function () {
     ChartDataService.prototype.getChartDataApr = function () {
         return this.getChartData(this.chartDataAprUrl);
     };
+    ChartDataService.prototype.getChartDataAprLastMinute = function () {
+        return this.generateRandomSeria();
+        //new Promise(this.generateRandomSeria)
+    };
+    ChartDataService.prototype.generateRandomSeria = function () {
+        return [(new Date()).getTime(), Math.round(Math.random() * 100)];
+    };
     ChartDataService.prototype.getChartData = function (url) {
         return this.http.get(url)
             .toPromise()

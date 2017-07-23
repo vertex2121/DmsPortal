@@ -20,7 +20,7 @@ export class FlowComponent {
 
   private buildChart(dataStream: any): void {
     this.options = {
-      title: { text: 'Уровень одобрения' },
+      title: { text: 'Количество заявок' },
       xAxis: {
         type: 'datetime'
       },

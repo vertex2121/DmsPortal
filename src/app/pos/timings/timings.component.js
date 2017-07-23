@@ -21,7 +21,7 @@ var TimingsComponent = (function () {
     };
     TimingsComponent.prototype.buildChart = function (dataStream) {
         this.options = {
-            title: { text: 'Уровень одобрения' },
+            title: { text: 'Время обработки заявок' },
             xAxis: {
                 type: 'datetime'
             },

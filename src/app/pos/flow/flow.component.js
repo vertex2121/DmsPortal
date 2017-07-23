@@ -21,7 +21,7 @@ var FlowComponent = (function () {
     };
     FlowComponent.prototype.buildChart = function (dataStream) {
         this.options = {
-            title: { text: 'Уровень одобрения' },
+            title: { text: 'Количество заявок' },
             xAxis: {
                 type: 'datetime'
             },

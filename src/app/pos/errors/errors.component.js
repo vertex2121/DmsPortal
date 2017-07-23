@@ -21,7 +21,7 @@ var ErrorsComponent = (function () {
     };
     ErrorsComponent.prototype.buildChart = function (dataStream) {
         this.options = {
-            title: { text: 'Уровень одобрения' },
+            title: { text: 'Колличество ошибок' },
             xAxis: {
                 type: 'datetime'
             },
